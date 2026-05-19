@@ -8,7 +8,8 @@ void	ft_putnbr(int nb)
 
 	if (nb == -2147483648)
 	{
-		write(1, "-2147483648", 11); 
+		write(1, "-2147483648", 11);
+		return; 
 	}
 
 	else if (nb < 0)
@@ -34,6 +35,6 @@ void	ft_putnbr(int nb)
 
 int main(int argc, char *argv[])
 {
-	ft_putnbr(000000000);
+	ft_putnbr(-1234);
 	return(0);
 }
