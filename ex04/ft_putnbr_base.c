@@ -3,15 +3,22 @@ int check_base(char *base)
 {
 	int j;
 	int k;
-	j = 0;
+	int length;
 	if (*base == '\0')
 		return (0);
-	while (base[j] != '\0')
+	length = 0;
+	while(base[length] != '\0')
 	{
-		if (base[j] == '+' || base[j] == '-')
+		if (base[length] == '+' || base[length] == '-')
 			return (0);
+		length++;
+	}
+ 
+        j = 0;
+	while (j < length-1)
+	{
 		k = j+1;
-		while (base[k] != '\0')
+		while (k < length)
 		{
 			if (base[j] == base[k])
 				return (0);
@@ -19,7 +26,7 @@ int check_base(char *base)
 		}
 		j++;
 	}
-	return (j);
+	return (length);
 }
 
 void ft_putnbr_base(int nbr, char *base)

@@ -5,20 +5,25 @@ int ft_atoi(char *str)
 	int	sign;
 	int	nb;
 	int 	i;
-	int 	j;
 
 	i = 0;
 	sign = 1;
-	j = 0;
 	nb = 0;
 	while (str[i] != '\0')
 	{
+		if (i == 0)
+		{
+			while (*str == ' ')
+			{
+				str++;
+			}
+		}
 		if (str[i] == '-')
 		{
 			sign = -sign;
 			i++;
 		}
-		else if (str[i] == '+' || str[i] == ' ')
+		else if (str[i] == '+')
 			i++;
 		else if (str[i] < '0' || str[i] > '9')
 		{
@@ -31,9 +36,11 @@ int ft_atoi(char *str)
 	}
 	return (sign * nb);
 }
+/*
 int main(int argc, char *argv[1])
 {
 #include <stdio.h>
+	if (argc > 1)
 	printf("%d", ft_atoi(argv[1]));
 }
-
+*/

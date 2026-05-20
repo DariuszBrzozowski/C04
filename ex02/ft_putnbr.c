@@ -20,9 +20,9 @@ void	ft_putnbr(int nb)
 	nb_char = nb%10 + '0';
 	write(1, &nb_char, 1);
 }
-
+/*
 int main(int argc, char *argv[])
 {
 	ft_putnbr(-120000034);
 	return(0);
-}
+}*/
