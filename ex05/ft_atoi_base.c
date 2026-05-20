@@ -22,17 +22,32 @@ int check_base(char *base)
 	return (j);
 }
 
+int get_num(char *base, char c)
+{
+	int i;
+
+	i = 0;
+	while (base[i] != '\0')
+	{
+		if (base[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+
 int ft_atoi_base(char *str, char *base)
 {
 	int base_cnt;
 	int	sign;
 	int	nb;
 	int 	i;
-	int 	j;
+	int 	cur_num;
 
 	i = 0;
 	sign = 1;
-	j = 0;
+	cur_num = 0;
 	nb = 0;
 	base_cnt = check_base(base);
 	if (base_cnt == 0)
@@ -42,24 +57,25 @@ int ft_atoi_base(char *str, char *base)
 		if (str[i] == '-')
 		{
 			sign = -sign;
-			i++;
 		}
 		else if (str[i] == '+' || str[i] == ' ')
-			i++;
-		else if ((str[i] < '0' || str[i] > '9') && (!( str[i] >= 'A' && str[i] <= 'F')))
-		{
-			return (sign * nb);
-		}
+			nb = 1*nb;
 		else
-		{	nb = nb * base + (str[i] - '0');
-			i++;
+		{	
+			cur_num = get_num(base, str[i]);
+			if (cur_num == -1)
+				return (sign * nb);
+			else
+				nb = nb * base_cnt + cur_num;
 		}
+		i++;
 	}
 	return (sign * nb);
 }
-int main(int argc, char *argv[1])
+int main(int argc, char *argv[])
 {
 #include <stdio.h>
-	printf("%d", ft_atoi(argv[1]));
+	if (argc > 1)
+		printf("%d", ft_atoi_base(argv[1], argv[2]));
 }
 
