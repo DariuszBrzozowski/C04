@@ -1,56 +1,46 @@
 #include <unistd.h>
-int check_base(char *base)
+
+int	ft_base_len(char *base)
 {
-	int j;
-	int k;
-	int length;
-	if (*base == '\0')
-		return (0);
-	length = 0;
-	while(base[length] != '\0')
+	int	i;
+	int	j;
+
+	i = 0;
+	while (base[i] != '\0')
 	{
-		if (base[length] == '+' || base[length] == '-')
+		if (base[i] == '+' || base[i] == '-')
 			return (0);
-		length++;
-	}
- 
-        j = 0;
-	while (j < length-1)
-	{
-		k = j+1;
-		while (k < length)
+		j = i + 1;
+		while (base[j] != '\0')
 		{
-			if (base[j] == base[k])
+			if (base[i] == base[j])
 				return (0);
-			k++;
+			j++;
 		}
-		j++;
+		i++;
 	}
-	return (length);
+	if (i < 2)
+		return (0);
+	return (i);
 }
 
-void ft_putnbr_base(int nbr, char *base)
+void	ft_putnbr_base(int nbr, char *base)
 {
-	int base_cnt;
-	long long nbr_l;
-	char nb_char;
-	nbr_l = nbr;
-	base_cnt = check_base(base);
-	if (base_cnt == 0)
-		return;
-	if (nbr_l < 0)
+	int		base_len;
+	long	nb;
+	char	nb_char;
+
+	nb = nbr;
+	base_len = ft_base_len(base);
+	if (base_len == 0)
+		return ;
+	if (nb < 0)
 	{
 		write(1, "-", 1);
-		nbr_l = - nbr_l;
+		nb = -nb;
 	}
-	if (nbr_l >= base_cnt)
-		ft_putnbr_base(nbr_l/base_cnt, base);
-	nb_char = base[nbr_l%base_cnt];
+	if (nb >= base_len)
+		ft_putnbr_base(nb / base_len, base);
+	nb_char = base[nb % base_len];
 	write(1, &nb_char, 1);
-}
-
-int main(int argc, char *argv[])
-{
-	ft_putnbr_base(-2147483648, "0123456789abcdef");
-	return(0);
 }

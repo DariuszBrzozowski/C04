@@ -1,4 +1,4 @@
-int 	ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -10,4 +10,3 @@ int 	ft_strlen(char *str)
 	}
 	return (i);
 }
-
