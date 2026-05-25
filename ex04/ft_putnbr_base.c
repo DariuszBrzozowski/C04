@@ -32,13 +32,13 @@ int check_base(char *base)
 void ft_putnbr_base(int nbr, char *base)
 {
 	int base_cnt;
-	long int nbr_l;
+	long long nbr_l;
 	char nb_char;
 	nbr_l = nbr;
 	base_cnt = check_base(base);
 	if (base_cnt == 0)
 		return;
-	if (nbr < 0)
+	if (nbr_l < 0)
 	{
 		write(1, "-", 1);
 		nbr_l = - nbr_l;
